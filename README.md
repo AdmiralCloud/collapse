@@ -17,6 +17,13 @@ rc-collapse ui component for react
 [download-image]: https://img.shields.io/npm/dm/rc-collapse.svg?style=flat-square
 [download-url]: https://npmjs.org/package/rc-collapse
 
+## Deployment
+
+compiles rc-collapse and makes the changes available via mmpro/collapse
+```
+npm run compile
+```
+
 ## Development
 
 ```
