@@ -33,7 +33,7 @@ const Collapse = React.createClass({
 
   getDefaultProps() {
     return {
-      prefixCls: 'rc-collapse',
+      prefixCls: 'rc-collapse johannes',
       onChange() {
       },
       accordion: false,
