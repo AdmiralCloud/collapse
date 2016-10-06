@@ -21,8 +21,9 @@ Thumbs.db
 node_modules
 .cache
 dist
-assets/**/*.css
 build
-lib
 coverage
-es
+# commented out to make the sources available in the node_module/rc-collapse
+# assets/**/*.css
+# lib
+# es
