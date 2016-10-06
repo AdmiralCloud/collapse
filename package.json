@@ -14,10 +14,10 @@
   "author": "eward.song@gmail.com",
   "repository": {
     "type": "git",
-    "url": "git@github.com:react-component/collapse.git"
+    "url": "git+ssh://git@github.com:mmpro/collapse.git"
   },
   "bugs": {
-    "url": "http://github.com/react-component/collapse/issues"
+    "url": "http://github.com/mmpro/collapse/issues"
   },
   "license": "MIT",
   "files": [
