@@ -17,6 +17,7 @@ const CollapsePanel = React.createClass({
       PropTypes.number,
       PropTypes.node,
     ]),
+    params: PropTypes.object,
     isActive: PropTypes.bool,
     onItemClick: PropTypes.func,
   },
@@ -34,13 +35,17 @@ const CollapsePanel = React.createClass({
   },
 
   render() {
-    const { className, prefixCls, header, children, isActive } = this.props;
+    const { className, prefixCls, header, params, children, isActive } = this.props;
     const headerCls = `${prefixCls}-header`;
     const itemCls = classNames({
       [`${prefixCls}-item`]: true,
       [`${prefixCls}-item-active`]: isActive,
       [className]: className,
     });
+    const warning = params.notification
+      ? params.notification
+      : null;
+
     return (
       <div className={ itemCls }>
         <div
@@ -51,7 +56,9 @@ const CollapsePanel = React.createClass({
         >
           <i className="arrow"></i>
           {header}
+          {warning}
         </div>
+
         <Animate
           showProp="isActive"
           exclusive
