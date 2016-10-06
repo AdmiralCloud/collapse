@@ -17,7 +17,7 @@ const CollapsePanel = React.createClass({
       PropTypes.number,
       PropTypes.node,
     ]),
-    notification: PropTypes.string,
+    notification: PropTypes.string, // AC custom
     isActive: PropTypes.bool,
     onItemClick: PropTypes.func,
   },
@@ -35,6 +35,7 @@ const CollapsePanel = React.createClass({
   },
 
   render() {
+    // AC custom - notification added
     const { className, prefixCls, header, notification, children, isActive } = this.props;
     const headerCls = `${prefixCls}-header`;
     const itemCls = classNames({
@@ -52,8 +53,9 @@ const CollapsePanel = React.createClass({
           aria-expanded={isActive}
         >
           <i className="arrow"></i>
-          {header}
-          {notification}
+          { header }
+
+          { notification /* AC custom */ }
         </div>
 
         <Animate

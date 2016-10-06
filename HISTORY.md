@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.6.7
+
+- add AC adjustments
+
 ## 1.6.6
 
 - add className props to Panel
