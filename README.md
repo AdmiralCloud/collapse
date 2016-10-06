@@ -19,7 +19,8 @@ rc-collapse ui component for react
 
 ## Deployment
 
-compiles rc-collapse and makes the changes available via mmpro/collapse
+compiles rc-collapse. commit changes to assets/*.css and lib to git.
+that will make the changes available via mmpro/collapse
 ```
 npm run compile
 ```
