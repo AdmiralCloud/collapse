@@ -18,6 +18,7 @@ class CollapsePanel extends Component {
   }
 
   render() {
+    // AC custom - notification added
     const {
       className,
       id,
@@ -61,7 +62,7 @@ class CollapsePanel extends Component {
         >
           {showArrow && (icon || <i className="arrow" />)}
           {header}
-          {notification}
+          { notification /* AC custom */ }
         </div>
         <Animate
           showProp="isActive"
@@ -108,7 +109,7 @@ CollapsePanel.propTypes = {
   accordion: PropTypes.bool,
   forceRender: PropTypes.bool,
   expandIcon: PropTypes.func,
-  notification: PropTypes.string,
+  notification: PropTypes.string, // AC custom
 };
 
 CollapsePanel.defaultProps = {

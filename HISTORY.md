@@ -1,6 +1,10 @@
 # History
 ----
 
+## 1.10.0 2018-08-31
+
+- add AC adjustments
+
 ## 1.10.0 2018-08-13
 
 - Add `expandIcon`.
