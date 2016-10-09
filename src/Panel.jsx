@@ -17,7 +17,8 @@ const CollapsePanel = React.createClass({
       PropTypes.number,
       PropTypes.node,
     ]),
-    notification: PropTypes.string, // AC custom
+    notification: PropTypes.object, // AC custom
+    color: PropTypes.object, // AC custom
     isActive: PropTypes.bool,
     onItemClick: PropTypes.func,
   },
@@ -36,7 +37,7 @@ const CollapsePanel = React.createClass({
 
   render() {
     // AC custom - notification added
-    const { className, prefixCls, header, notification, children, isActive } = this.props;
+    const { className, prefixCls, header, notification, color, children, isActive } = this.props;
     const headerCls = `${prefixCls}-header`;
     const itemCls = classNames({
       [`${prefixCls}-item`]: true,
@@ -56,6 +57,8 @@ const CollapsePanel = React.createClass({
           { header }
 
           { notification /* AC custom */ }
+
+          { color /* AC custom */ }
         </div>
 
         <Animate
