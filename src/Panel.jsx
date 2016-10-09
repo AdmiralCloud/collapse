@@ -35,6 +35,7 @@ class CollapsePanel extends Component {
       forceRender,
       expandIcon,
       notification,
+      color,
     } = this.props;
     const headerCls = classNames(`${prefixCls}-header`, {
       [headerClass]: headerClass,
@@ -49,7 +50,6 @@ class CollapsePanel extends Component {
     if (showArrow && typeof expandIcon === 'function') {
       icon = React.createElement(expandIcon, { ...this.props });
     }
-    const warning = params.notification ? params.notification : null;
     return (
       <div className={itemCls} style={style} id={id}>
         <div
@@ -63,6 +63,8 @@ class CollapsePanel extends Component {
           {showArrow && (icon || <i className="arrow" />)}
           {header}
           { notification /* AC custom */ }
+
+          { color /* AC custom */ }
         </div>
         <Animate
           showProp="isActive"
@@ -110,6 +112,7 @@ CollapsePanel.propTypes = {
   forceRender: PropTypes.bool,
   expandIcon: PropTypes.func,
   notification: PropTypes.string, // AC custom
+  color: PropTypes.object, // AC custom
 };
 
 CollapsePanel.defaultProps = {
