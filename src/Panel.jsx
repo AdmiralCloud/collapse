@@ -35,7 +35,7 @@ class CollapsePanel extends Component {
       forceRender,
       expandIcon,
       notification,
-      color,
+      licenseColor,
     } = this.props;
     const headerCls = classNames(`${prefixCls}-header`, {
       [headerClass]: headerClass,
@@ -64,7 +64,7 @@ class CollapsePanel extends Component {
           {header}
           { notification /* AC custom */ }
 
-          { color /* AC custom */ }
+          { licenseColor /* AC custom */ }
         </div>
         <Animate
           showProp="isActive"
