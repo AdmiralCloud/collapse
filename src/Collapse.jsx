@@ -1,6 +1,7 @@
 import React, { PropTypes, Children }from 'react';
 import CollapsePanel from './Panel';
 import openAnimationFactory from './openAnimationFactory';
+import classNames from 'classnames';
 
 function toArray(activeKey) {
   let currentActiveKey = activeKey;
@@ -25,6 +26,8 @@ const Collapse = React.createClass({
     openAnimation: PropTypes.object,
     onChange: PropTypes.func,
     accordion: PropTypes.bool,
+    className: PropTypes.string,
+    style: PropTypes.object,
   },
 
   statics: {
@@ -88,7 +91,10 @@ const Collapse = React.createClass({
   getItems() {
     const activeKey = this.state.activeKey;
     const { prefixCls, accordion } = this.props;
-    return Children.map(this.props.children, (child, index) => {
+    const newChildren = [];
+
+    Children.forEach(this.props.children, (child, index) => {
+      if (!child) return;
       // If there is no key provide, use the panel order as default key
       const key = child.key || String(index);
       const header = child.props.header;
@@ -109,23 +115,27 @@ const Collapse = React.createClass({
         onItemClick: this.onClickItem(key).bind(this),
       };
 
-      return React.cloneElement(child, props);
+      newChildren.push(React.cloneElement(child, props));
     });
+
+    return newChildren;
   },
 
   setActiveKey(activeKey) {
     if (!('activeKey' in this.props)) {
-      this.setState({
-        activeKey,
-      });
+      this.setState({ activeKey });
     }
     this.props.onChange(this.props.accordion ? activeKey[0] : activeKey);
   },
 
   render() {
-    const prefixCls = this.props.prefixCls;
+    const { prefixCls, className, style } = this.props;
+    const collapseClassName = classNames({
+      [prefixCls]: true,
+      [className]: !!className,
+    });
     return (
-      <div className={prefixCls}>
+      <div className={collapseClassName} style={style}>
         {this.getItems()}
       </div>
     );
