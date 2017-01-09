@@ -18,7 +18,6 @@ class CollapsePanel extends Component {
   }
 
   render() {
-    // AC custom - notification added
     const {
       className,
       id,
@@ -34,8 +33,8 @@ class CollapsePanel extends Component {
       accordion,
       forceRender,
       expandIcon,
-      notification,
-      licenseColor,
+      notification, // AC custom
+      licenseColor, // AC custom
     } = this.props;
     const headerCls = classNames(`${prefixCls}-header`, {
       [headerClass]: headerClass,
