@@ -54,6 +54,10 @@
 
 - Child item support null [!45](https://github.com/react-component/collapse/pull/45)
 
+## 1.6.7
+
+- add AC adjustments
+
 ## 1.6.6
 
 - add className props to Panel

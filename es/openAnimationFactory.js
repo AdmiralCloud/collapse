@@ -1,18 +1,8 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _cssAnimation = require('css-animation');
-
-var _cssAnimation2 = _interopRequireDefault(_cssAnimation);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+import cssAnimation from 'css-animation';
 
 function animate(node, show, transitionName, done) {
   var height = void 0;
-  return (0, _cssAnimation2['default'])(node, transitionName, {
+  return cssAnimation(node, transitionName, {
     start: function start() {
       if (!show) {
         node.style.height = node.offsetHeight + 'px';
@@ -42,5 +32,4 @@ function animation(prefixCls) {
   };
 }
 
-exports['default'] = animation;
-module.exports = exports['default'];
+export default animation;

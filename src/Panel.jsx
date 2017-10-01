@@ -110,8 +110,8 @@ CollapsePanel.propTypes = {
   accordion: PropTypes.bool,
   forceRender: PropTypes.bool,
   expandIcon: PropTypes.func,
-  notification: PropTypes.string, // AC custom
-  color: PropTypes.object, // AC custom
+  notification: PropTypes.object, // AC custom
+  licenseColor: PropTypes.object, // AC custom
 };
 
 CollapsePanel.defaultProps = {
@@ -121,6 +121,8 @@ CollapsePanel.defaultProps = {
   onItemClick() { },
   headerClass: '',
   forceRender: false,
+  notification: {}, // AC custom
+  licenseColor: {}, // AC custom
 };
 
 export default CollapsePanel;
