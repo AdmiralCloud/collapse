@@ -54,6 +54,12 @@
     }
   }
 
+  & > &-item-disabled > .@{prefixCls}-header {
+    cursor: not-allowed;
+    color: #999;
+    background-color: #f3f3f3;
+  }
+
   &-content {
     overflow: hidden;
     color: @text-color;
@@ -86,4 +92,3 @@
     }
   }
 }
-

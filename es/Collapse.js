@@ -1,54 +1,14 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Panel = require('./Panel');
-
-var _Panel2 = _interopRequireDefault(_Panel);
-
-var _openAnimationFactory = require('./openAnimationFactory');
-
-var _openAnimationFactory2 = _interopRequireDefault(_openAnimationFactory);
-
-var _classnames = require('classnames');
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+import _defineProperty from 'babel-runtime/helpers/defineProperty';
+import _toConsumableArray from 'babel-runtime/helpers/toConsumableArray';
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
+import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
+import _inherits from 'babel-runtime/helpers/inherits';
+import React, { Component, Children } from 'react';
+import PropTypes from 'prop-types';
+import CollapsePanel from './Panel';
+import openAnimationFactory from './openAnimationFactory';
+import classNames from 'classnames';
 
 function toArray(activeKey) {
   var currentActiveKey = activeKey;
@@ -59,12 +19,12 @@ function toArray(activeKey) {
 }
 
 var Collapse = function (_Component) {
-  (0, _inherits3['default'])(Collapse, _Component);
+  _inherits(Collapse, _Component);
 
   function Collapse(props) {
-    (0, _classCallCheck3['default'])(this, Collapse);
+    _classCallCheck(this, Collapse);
 
-    var _this = (0, _possibleConstructorReturn3['default'])(this, (Collapse.__proto__ || Object.getPrototypeOf(Collapse)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Collapse.__proto__ || Object.getPrototypeOf(Collapse)).call(this, props));
 
     var _this$props = _this.props,
         activeKey = _this$props.activeKey,
@@ -76,13 +36,13 @@ var Collapse = function (_Component) {
     }
 
     _this.state = {
-      openAnimation: _this.props.openAnimation || (0, _openAnimationFactory2['default'])(_this.props.prefixCls),
+      openAnimation: _this.props.openAnimation || openAnimationFactory(_this.props.prefixCls),
       activeKey: toArray(currentActiveKey)
     };
     return _this;
   }
 
-  (0, _createClass3['default'])(Collapse, [{
+  _createClass(Collapse, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       if ('activeKey' in nextProps) {
@@ -103,7 +63,7 @@ var Collapse = function (_Component) {
       if (this.props.accordion) {
         activeKey = activeKey[0] === key ? [] : [key];
       } else {
-        activeKey = [].concat((0, _toConsumableArray3['default'])(activeKey));
+        activeKey = [].concat(_toConsumableArray(activeKey));
         var index = activeKey.indexOf(key);
         var isActive = index > -1;
         if (isActive) {
@@ -128,7 +88,7 @@ var Collapse = function (_Component) {
 
       var newChildren = [];
 
-      _react.Children.forEach(this.props.children, function (child, index) {
+      Children.forEach(this.props.children, function (child, index) {
         if (!child) return;
         // If there is no key provide, use the panel order as default key
         var key = child.key || String(index);
@@ -158,7 +118,7 @@ var Collapse = function (_Component) {
           }
         };
 
-        newChildren.push(_react2['default'].cloneElement(child, props));
+        newChildren.push(React.cloneElement(child, props));
       });
 
       return newChildren;
@@ -181,28 +141,29 @@ var Collapse = function (_Component) {
           className = _props2.className,
           style = _props2.style;
 
-      var collapseClassName = (0, _classnames2['default'])((_classNames = {}, (0, _defineProperty3['default'])(_classNames, prefixCls, true), (0, _defineProperty3['default'])(_classNames, className, !!className), _classNames));
-      return _react2['default'].createElement(
+      var collapseClassName = classNames((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, className, !!className), _classNames));
+      return React.createElement(
         'div',
         { className: collapseClassName, style: style },
         this.getItems()
       );
     }
   }]);
+
   return Collapse;
-}(_react.Component);
+}(Component);
 
 Collapse.propTypes = {
-  children: _propTypes2['default'].any,
-  prefixCls: _propTypes2['default'].string,
-  activeKey: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].arrayOf(_propTypes2['default'].string)]),
-  defaultActiveKey: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].arrayOf(_propTypes2['default'].string)]),
-  openAnimation: _propTypes2['default'].object,
-  onChange: _propTypes2['default'].func,
-  accordion: _propTypes2['default'].bool,
-  className: _propTypes2['default'].string,
-  style: _propTypes2['default'].object,
-  destroyInactivePanel: _propTypes2['default'].bool
+  children: PropTypes.any,
+  prefixCls: PropTypes.string,
+  activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  defaultActiveKey: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  openAnimation: PropTypes.object,
+  onChange: PropTypes.func,
+  accordion: PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  destroyInactivePanel: PropTypes.bool
 };
 
 Collapse.defaultProps = {
@@ -213,7 +174,6 @@ Collapse.defaultProps = {
   destroyInactivePanel: false
 };
 
-Collapse.Panel = _Panel2['default'];
+Collapse.Panel = CollapsePanel;
 
-exports['default'] = Collapse;
-module.exports = exports['default'];
+export default Collapse;
