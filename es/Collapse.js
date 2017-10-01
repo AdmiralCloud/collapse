@@ -139,13 +139,15 @@ var Collapse = function (_Component) {
       var _props2 = this.props,
           prefixCls = _props2.prefixCls,
           className = _props2.className,
-          style = _props2.style;
+          style = _props2.style,
+          badge = _props2.badge;
 
       var collapseClassName = classNames((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, className, !!className), _classNames));
       return React.createElement(
         'div',
         { className: collapseClassName, style: style },
-        this.getItems()
+        this.getItems(),
+        badge
       );
     }
   }]);
@@ -163,7 +165,8 @@ Collapse.propTypes = {
   accordion: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
-  destroyInactivePanel: PropTypes.bool
+  destroyInactivePanel: PropTypes.bool,
+  badge: PropTypes.object
 };
 
 Collapse.defaultProps = {

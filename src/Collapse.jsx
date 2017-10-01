@@ -104,7 +104,7 @@ class Collapse extends Component {
   }
 
   render() {
-    const { prefixCls, className, style, accordion } = this.props;
+    const { prefixCls, className, style, accordion, badge } = this.props;
     const collapseClassName = classNames({
       [prefixCls]: true,
       [className]: !!className,
@@ -112,6 +112,7 @@ class Collapse extends Component {
     return (
       <div className={collapseClassName} style={style} role={accordion ? 'tablist' : null}>
         {this.getItems()}
+        {badge}
       </div>
     );
   }
@@ -135,6 +136,7 @@ Collapse.propTypes = {
   style: PropTypes.object,
   destroyInactivePanel: PropTypes.bool,
   expandIcon: PropTypes.func,
+  badge: PropTypes.object, // AC change
 };
 
 Collapse.defaultProps = {
