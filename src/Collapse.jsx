@@ -102,7 +102,7 @@ class Collapse extends Component {
   }
 
   render() {
-    const { prefixCls, className, style } = this.props;
+    const { prefixCls, className, style, badge } = this.props;
     const collapseClassName = classNames({
       [prefixCls]: true,
       [className]: !!className,
@@ -110,6 +110,7 @@ class Collapse extends Component {
     return (
       <div className={collapseClassName} style={style}>
         {this.getItems()}
+        {badge}
       </div>
     );
   }
@@ -132,6 +133,7 @@ Collapse.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   destroyInactivePanel: PropTypes.bool,
+  badge: PropTypes.object,
 };
 
 Collapse.defaultProps = {
