@@ -138,9 +138,9 @@ CollapsePanel.defaultProps = {
   onItemClick: function onItemClick() {},
 
   headerClass: '',
-  forceRender: false,
-  notification: {}, // AC custom
-  licenseColor: {} // AC custom
+  forceRender: false
+  // notification: {}, // AC custom
+  // licenseColor: {}, // AC custom
 };
 
 export default CollapsePanel;
