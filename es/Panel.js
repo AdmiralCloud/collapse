@@ -1,3 +1,4 @@
+import _extends from 'babel-runtime/helpers/extends';
 import _defineProperty from 'babel-runtime/helpers/defineProperty';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
@@ -13,19 +14,28 @@ var CollapsePanel = function (_Component) {
   _inherits(CollapsePanel, _Component);
 
   function CollapsePanel() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, CollapsePanel);
 
-    return _possibleConstructorReturn(this, (CollapsePanel.__proto__ || Object.getPrototypeOf(CollapsePanel)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CollapsePanel.__proto__ || Object.getPrototypeOf(CollapsePanel)).call.apply(_ref, [this].concat(args))), _this), _this.handleItemClick = function () {
+      if (_this.props.onItemClick) {
+        _this.props.onItemClick();
+      }
+    }, _this.handleKeyPress = function (e) {
+      if (e.key === 'Enter' || e.keyCode === 13 || e.which === 13) {
+        _this.handleItemClick();
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CollapsePanel, [{
-    key: 'handleItemClick',
-    value: function handleItemClick() {
-      if (this.props.onItemClick) {
-        this.props.onItemClick();
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _classNames2;
@@ -42,11 +52,19 @@ var CollapsePanel = function (_Component) {
           showArrow = _props.showArrow,
           destroyInactivePanel = _props.destroyInactivePanel,
           disabled = _props.disabled,
+          accordion = _props.accordion,
+          forceRender = _props.forceRender,
+          expandIcon = _props.expandIcon,
           notification = _props.notification,
           licenseColor = _props.licenseColor;
 
       var headerCls = classNames(prefixCls + '-header', _defineProperty({}, headerClass, headerClass));
       var itemCls = classNames((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-active', isActive), _defineProperty(_classNames2, prefixCls + '-item-disabled', disabled), _classNames2), className);
+
+      var icon = null;
+      if (showArrow && typeof expandIcon === 'function') {
+        icon = React.createElement(expandIcon, _extends({}, this.props));
+      }
       return React.createElement(
         'div',
         { className: itemCls, style: style, id: id },
@@ -54,11 +72,13 @@ var CollapsePanel = function (_Component) {
           'div',
           {
             className: headerCls,
-            onClick: this.handleItemClick.bind(this),
-            role: 'tab',
-            'aria-expanded': isActive
+            onClick: this.handleItemClick,
+            role: accordion ? 'tab' : 'button',
+            tabIndex: disabled ? -1 : 0,
+            'aria-expanded': '' + isActive,
+            onKeyPress: this.handleKeyPress
           },
-          showArrow && React.createElement('i', { className: 'arrow' }),
+          showArrow && (icon || React.createElement('i', { className: 'arrow' })),
           header,
           notification /* AC custom */,
           licenseColor /* AC custom */
@@ -76,7 +96,9 @@ var CollapsePanel = function (_Component) {
             {
               prefixCls: prefixCls,
               isActive: isActive,
-              destroyInactivePanel: destroyInactivePanel
+              destroyInactivePanel: destroyInactivePanel,
+              forceRender: forceRender,
+              role: accordion ? 'tabpanel' : null
             },
             children
           )
@@ -102,6 +124,9 @@ CollapsePanel.propTypes = {
   style: PropTypes.object,
   destroyInactivePanel: PropTypes.bool,
   disabled: PropTypes.bool,
+  accordion: PropTypes.bool,
+  forceRender: PropTypes.bool,
+  expandIcon: PropTypes.func,
   notification: PropTypes.object, // AC custom
   licenseColor: PropTypes.object // AC custom
 };
@@ -112,9 +137,10 @@ CollapsePanel.defaultProps = {
   destroyInactivePanel: false,
   onItemClick: function onItemClick() {},
 
-  headerClass: ''
-  // notification: {}, // AC custom
-  // licenseColor: {}, // AC custom
+  headerClass: '',
+  forceRender: false,
+  notification: {}, // AC custom
+  licenseColor: {} // AC custom
 };
 
 export default CollapsePanel;

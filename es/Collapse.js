@@ -84,7 +84,8 @@ var Collapse = function (_Component) {
       var _props = this.props,
           prefixCls = _props.prefixCls,
           accordion = _props.accordion,
-          destroyInactivePanel = _props.destroyInactivePanel;
+          destroyInactivePanel = _props.destroyInactivePanel,
+          expandIcon = _props.expandIcon;
 
       var newChildren = [];
 
@@ -112,10 +113,12 @@ var Collapse = function (_Component) {
           prefixCls: prefixCls,
           destroyInactivePanel: destroyInactivePanel,
           openAnimation: _this2.state.openAnimation,
+          accordion: accordion,
           children: child.props.children,
           onItemClick: disabled ? null : function () {
             return _this2.onClickItem(key);
-          }
+          },
+          expandIcon: expandIcon
         };
 
         newChildren.push(React.cloneElement(child, props));
@@ -140,12 +143,13 @@ var Collapse = function (_Component) {
           prefixCls = _props2.prefixCls,
           className = _props2.className,
           style = _props2.style,
+          accordion = _props2.accordion,
           badge = _props2.badge;
 
       var collapseClassName = classNames((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, className, !!className), _classNames));
       return React.createElement(
         'div',
-        { className: collapseClassName, style: style },
+        { className: collapseClassName, style: style, role: accordion ? 'tablist' : null },
         this.getItems(),
         badge
       );
@@ -166,7 +170,8 @@ Collapse.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   destroyInactivePanel: PropTypes.bool,
-  badge: PropTypes.object
+  expandIcon: PropTypes.func,
+  badge: PropTypes.object // AC change
 };
 
 Collapse.defaultProps = {
